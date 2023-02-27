@@ -31,6 +31,10 @@ const ZustandApp: React.FC<ZustandAppProps> = (props) => {
       <Ant.Layout.Sider
         style={{
           height: "100vh",
+          overflowY: "auto",
+          position: "fixed",
+          top: 0,
+          left: 0,
         }}
         breakpoint="lg"
         collapsedWidth="0"
@@ -60,9 +64,11 @@ const ZustandApp: React.FC<ZustandAppProps> = (props) => {
       <Ant.Layout>
         <Ant.Layout.Content
           style={{
+            marginLeft: "200px",
             padding: "50px",
-            overflow: "initial",
-            background: "#eee"
+            height: "100vh",
+            overflowY: "auto",
+            background: "#eee",
           }}
         >
           <Outlet />

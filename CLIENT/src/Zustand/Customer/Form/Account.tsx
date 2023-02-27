@@ -5,6 +5,11 @@ import * as Components from "../../../Components";
 interface AccountProps {}
 
 const Account: React.FC<AccountProps> = (props) => {
+  const commonProps = {
+    labelCol: { span: 8 },
+    wrapperCol: { span: 20 },
+  };
+
   return (
     <Ant.Card title="Account">
       <Ant.Row gutter={16}>
@@ -15,16 +20,14 @@ const Account: React.FC<AccountProps> = (props) => {
           <Ant.Form.Item
             label="Account"
             name="account"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 20 }}
+            {...commonProps}
           >
             <Ant.Input />
           </Ant.Form.Item>
           <Ant.Form.Item
             label="Password"
             name="password"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 20 }}
+            {...commonProps}
           >
             <Ant.Input.Password />
           </Ant.Form.Item>

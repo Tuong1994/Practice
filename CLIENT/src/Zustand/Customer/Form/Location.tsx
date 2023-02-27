@@ -14,10 +14,21 @@ const Location: React.FC<LocationProps> = (props) => {
 
   return (
     <Ant.Card title="Location">
-      <Ant.Form.Item label="Address" name="address" labelCol={{ span: 4 }}>
+      <Ant.Form.Item
+        label="Address"
+        name="address"
+        labelAlign="left"
+        labelCol={{ span: 5 }}
+      >
         <Ant.Input />
       </Ant.Form.Item>
-      <Ant.Form.Item label="City" name="city" labelCol={{ span: 4 }}>
+
+      <Ant.Form.Item
+        label="City"
+        name="city"
+        labelAlign="left"
+        labelCol={{ span: 5 }}
+      >
         <Ant.Select
           showSearch
           placeholder="Select a person"
@@ -43,7 +54,13 @@ const Location: React.FC<LocationProps> = (props) => {
           // ]}
         />
       </Ant.Form.Item>
-      <Ant.Form.Item label="District" name="district" labelCol={{ span: 4 }}>
+
+      <Ant.Form.Item
+        label="District"
+        name="district"
+        labelAlign="left"
+        labelCol={{ span: 5 }}
+      >
         <Ant.Select
           showSearch
           placeholder="Select a person"
@@ -69,7 +86,13 @@ const Location: React.FC<LocationProps> = (props) => {
           // ]}
         />
       </Ant.Form.Item>
-      <Ant.Form.Item label="Ward" name="ward" labelCol={{ span: 4 }}>
+
+      <Ant.Form.Item
+        label="Ward"
+        name="ward"
+        labelAlign="left"
+        labelCol={{ span: 5 }}
+      >
         <Ant.Select
           showSearch
           placeholder="Select a person"

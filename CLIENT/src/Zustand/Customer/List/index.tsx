@@ -1,96 +1,58 @@
 import React from "react";
 import * as Ant from "antd";
 import * as Components from "../../../Components";
-import { Link } from "react-router-dom";
+import * as Models from "../../../Models";
+import { Link, useNavigate } from "react-router-dom";
 import type { ColumnsType } from "antd/es/table";
+import utils from "../../../Utils";
 
 interface ListProps {}
 
-interface DataType {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-  tags: string[];
-}
-
 const List: React.FC<ListProps> = (props) => {
-  const data: DataType[] = [
+  const navigate = useNavigate();
+
+  const data: Models.Customer.ICustomer[] = [
     {
-      key: "1",
-      name: "John Brown",
-      age: 32,
-      address: "New York No. 1 Lake Park",
-      tags: ["nice", "developer"],
-    },
-    {
-      key: "2",
-      name: "Jim Green",
-      age: 42,
-      address: "London No. 1 Lake Park",
-      tags: ["loser"],
-    },
-    {
-      key: "3",
-      name: "Joe Black",
-      age: 32,
-      address: "Sydney No. 1 Lake Park",
-      tags: ["cool", "teacher"],
+      id: utils.uuid(),
+      account: "John1994",
+      fullName: "John Brown",
+      phone: "0793229981",
+      email: "john@gmail.com",
     },
   ];
 
-  const columns: ColumnsType<DataType> = [
+  const columns: ColumnsType<Models.Customer.ICustomer> = [
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      render: (text) => <Link to="/zustand/customer/add">{text}</Link>,
+      title: "Full name",
+      dataIndex: "fullName",
+      key: "fullName",
+      render: (text) => <Link to="/zustand/customer/edit">{text}</Link>,
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
+      title: "Account",
+      dataIndex: "account",
+      key: "account",
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Phone",
+      dataIndex: "phone",
+      key: "phone",
     },
     {
-      title: "Tags",
-      key: "tags",
-      dataIndex: "tags",
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 5 ? "geekblue" : "green";
-            if (tag === "loser") {
-              color = "volcano";
-            }
-            return (
-              <Ant.Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Ant.Tag>
-            );
-          })}
-        </>
-      ),
-    },
-    {
-      title: "Action",
-      key: "action",
-      render: (_, record) => (
-        <Ant.Space size="middle">
-          <a>Invite {record.name}</a>
-          <a>Delete</a>
-        </Ant.Space>
-      ),
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
     },
   ];
 
   return (
     <Ant.Layout>
-      <Components.BodyHeader title="Customer" />
+      <Components.BodyHeader
+        title="Customer"
+        isButton
+        btnTitle="Add"
+        onClick={() => navigate("/zustand/customer/add")}
+      />
       <Ant.Table columns={columns} dataSource={data} />
     </Ant.Layout>
   );

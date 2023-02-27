@@ -5,6 +5,7 @@ interface BodyHeaderProps {
   title?: string;
   isButton?: boolean;
   btnTitle?: string;
+  onClick?(): void;
 }
 
 const BodyHeader: React.FC<BodyHeaderProps> = (props) => {
@@ -12,6 +13,7 @@ const BodyHeader: React.FC<BodyHeaderProps> = (props) => {
     title = "Body Header",
     isButton = false,
     btnTitle = "Button",
+    onClick,
   } = props;
 
   return (
@@ -26,7 +28,7 @@ const BodyHeader: React.FC<BodyHeaderProps> = (props) => {
         }}
       >
         <h3 style={{fontSize: "20px"}}>{title}</h3>
-        {isButton && <Ant.Button type="primary">{btnTitle}</Ant.Button>}
+        {isButton && <Ant.Button type="primary" onClick={onClick}>{btnTitle}</Ant.Button>}
       </div>
     </Ant.Layout.Header>
   );

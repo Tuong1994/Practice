@@ -10,6 +10,14 @@ const utils = {
     if (pathname.includes("add")) return true;
     return false;
   },
+  formatPhoneNumber: (n: string) => {
+    if (n && n.length > 10) return;
+    let format = "(xxx)-xxx xxxx";
+    for (let i = 0; i < format.length; i++) {
+      format = format.replace("x", n[i]);
+    }
+    return format;
+  },
 };
 
 export default utils;

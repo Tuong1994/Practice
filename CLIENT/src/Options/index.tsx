@@ -1,4 +1,5 @@
 import { EGender } from "../Models/Customer";
+import { EOrderStatus, EPaymentMethods } from "../Models/Order";
 import {
   ECategory,
   EInventoryStatus,
@@ -80,6 +81,16 @@ const options = {
   inventoryStatus: [
     { label: "In stock", value: EInventoryStatus.inStock },
     { label: "Out of stock", value: EInventoryStatus.outOfStock },
+  ],
+  orderStatus: [
+    { label: "Waiting", value: EOrderStatus.waiting },
+    { label: "COD", value: EOrderStatus.cod },
+    { label: "Paid", value: EOrderStatus.paid },
+  ],
+  paymentMethod: [
+    { label: "Direct", value: EPaymentMethods.direct },
+    { label: "Transfer", value: EPaymentMethods.transfer },
+    { label: "Delivery", value: EPaymentMethods.delivery },
   ],
 };
 

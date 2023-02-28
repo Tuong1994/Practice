@@ -1,7 +1,9 @@
-import BodyHeader from "./BodyHeader"
 import * as Upload from "./Upload";
+import BodyHeader from "./BodyHeader";
+import FormLoader from "./FormLoader";
 
 export {
-    BodyHeader,
     Upload,
+    BodyHeader,
+    FormLoader,
 };

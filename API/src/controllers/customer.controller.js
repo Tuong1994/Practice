@@ -1,33 +1,14 @@
 const { Customer, Order } = require("../db/models");
+const Sequelize = require("sequelize");
 const utils = require("../utils");
 
+const Op = Sequelize.Op;
+
 const getList = async (req, res) => {
-  const { page, limit } = req.query;
+  const { page, limit, searchText } = req.query;
 
   try {
-    const customers = await Customer.findAll({
-      attributes: [
-        "id",
-        "account",
-        "firstName",
-        "lastName",
-        "fullName",
-        "phone",
-        "email",
-        "gender",
-        "address",
-        "wardName",
-        "wardCode",
-        "districtName",
-        "districtCode",
-        "cityName",
-        "cityCode",
-        "birthday",
-        "avatar",
-        "createdAt",
-        "updatedAt",
-      ],
-    });
+    const customers = await Customer.findAll();
 
     const newList = utils.paging(customers, page, limit);
 

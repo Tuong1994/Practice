@@ -3,6 +3,7 @@ import * as Ant from "antd";
 
 interface BodyHeaderProps {
   title?: string;
+  htmlType?: "button" | "submit";
   isButton?: boolean;
   btnTitle?: string;
   onClick?(): void;
@@ -11,6 +12,7 @@ interface BodyHeaderProps {
 const BodyHeader: React.FC<BodyHeaderProps> = (props) => {
   const {
     title = "Body Header",
+    htmlType,
     isButton = false,
     btnTitle = "Button",
     onClick,
@@ -28,7 +30,7 @@ const BodyHeader: React.FC<BodyHeaderProps> = (props) => {
         }}
       >
         <h3 style={{fontSize: "20px"}}>{title}</h3>
-        {isButton && <Ant.Button type="primary" onClick={onClick}>{btnTitle}</Ant.Button>}
+        {isButton && <Ant.Button type="primary" htmlType={htmlType} onClick={onClick}>{btnTitle}</Ant.Button>}
       </div>
     </Ant.Layout.Header>
   );

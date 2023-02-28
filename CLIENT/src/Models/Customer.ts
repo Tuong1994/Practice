@@ -7,6 +7,7 @@ export enum EGender {
 
 export interface ICustomer {
   id?: string;
+  key?: string;
   account?: string;
   password?: string;
   firstName?: string;
@@ -21,9 +22,9 @@ export interface ICustomer {
   districtName?: string;
   wardCode?: string;
   wardName?: string;
-  birthday?: Date | string;
+  birthday?: any;
   gender?: number;
-  avatar?: IImage;
+  avatar?: IImage | any;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }

@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import type { UploadChangeParam } from "antd/es/upload";
 import type { RcFile, UploadFile, UploadProps } from "antd/es/upload/interface";
 
+interface SingleProps {
+  onChange?(f: RcFile): void;
+}
+
 const getBase64 = (img: RcFile, callback: (url: string) => void) => {
   const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result as string));
+  reader.addEventListener("loadend", () => callback(reader.result as string));
   reader.readAsDataURL(img);
 };
 
@@ -22,9 +26,11 @@ const beforeUpload = (file: RcFile) => {
   return isJpgOrPng && isLt2M;
 };
 
-const Single: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState<string>();
+const Single: React.FC<SingleProps> = (props) => {
+  const { onChange } = props;
+
+  const [loading, setLoading] = React.useState(false);
+  const [imageUrl, setImageUrl] = React.useState<string>();
 
   const handleChange: UploadProps["onChange"] = (
     info: UploadChangeParam<UploadFile>
@@ -39,6 +45,7 @@ const Single: React.FC = () => {
         setLoading(false);
         setImageUrl(url);
       });
+      onChange && onChange(info.file.originFileObj as RcFile);
     }
   };
 
@@ -51,7 +58,6 @@ const Single: React.FC = () => {
 
   return (
     <Upload
-      name="avatar"
       listType="picture-circle"
       className="avatar-uploader"
       showUploadList={false}

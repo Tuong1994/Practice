@@ -14,21 +14,15 @@ const Account: React.FC<AccountProps> = (props) => {
     <Ant.Card title="Account">
       <Ant.Row gutter={16}>
         <Ant.Col span={4}>
-          <Components.Upload.Single />
+          <Ant.Form.Item name="avatar">
+            <Components.Upload.Single />
+          </Ant.Form.Item>
         </Ant.Col>
         <Ant.Col span={20}>
-          <Ant.Form.Item
-            label="Account"
-            name="account"
-            {...commonProps}
-          >
+          <Ant.Form.Item label="Account" name="account" {...commonProps}>
             <Ant.Input />
           </Ant.Form.Item>
-          <Ant.Form.Item
-            label="Password"
-            name="password"
-            {...commonProps}
-          >
+          <Ant.Form.Item label="Password" name="password" {...commonProps}>
             <Ant.Input.Password />
           </Ant.Form.Item>
         </Ant.Col>

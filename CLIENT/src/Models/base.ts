@@ -29,9 +29,6 @@ export interface IListQuery {
   categoryId?: string;
   producerId?: string;
   productId?: string;
-  commentId?: string;
-  rateId?: string;
-  cartId?: string;
   cityId?: string;
   cityCode?: string;
   districtId?: string;
@@ -53,9 +50,6 @@ export const getListQuery = (query: IListQuery): string => {
     categoryId,
     producerId,
     productId,
-    commentId,
-    rateId,
-    cartId,
     cityId,
     cityCode,
     districtId,
@@ -80,9 +74,6 @@ export const getListQuery = (query: IListQuery): string => {
   categoryId && (rs += `&categoryId=${categoryId}`);
   producerId && (rs += `&producerId=${producerId}`);
   productId && (rs += `&productId=${productId}`);
-  commentId && (rs += `&commentId=${commentId}`);
-  rateId && (rs += `&rateId=${rateId}`);
-  cartId && (rs += `&cartId=${cartId}`);
   cityId && (rs += `&cityId=${cityId}`);
   cityCode && (rs += `&cityCode=${cityCode}`);
   districtId && (rs += `&districtId=${districtId}`);

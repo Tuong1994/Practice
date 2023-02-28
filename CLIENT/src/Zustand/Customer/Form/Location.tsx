@@ -1,16 +1,21 @@
 import React from "react";
 import * as Ant from "antd";
+import useLocationStore from "../../Store/Location";
+import { IListQuery } from "../../../Models/base";
 
-interface LocationProps {}
+interface LocationProps {
+  getDistricts(query: IListQuery): void;
+  getWards(query: IListQuery): void;
+}
 
 const Location: React.FC<LocationProps> = (props) => {
-  const onChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
+  const { getDistricts, getWards } = props;
 
-  const onSearch = (value: string) => {
-    console.log("search:", value);
-  };
+  const [form] = Ant.Form.useForm();
+
+  const cities = useLocationStore((state) => state.cities);
+  const districts = useLocationStore((state) => state.districts);
+  const wards = useLocationStore((state) => state.wards);
 
   return (
     <Ant.Card title="Location">
@@ -25,97 +30,63 @@ const Location: React.FC<LocationProps> = (props) => {
 
       <Ant.Form.Item
         label="City"
-        name="city"
+        name="cityCode"
         labelAlign="left"
         labelCol={{ span: 5 }}
       >
         <Ant.Select
           showSearch
-          placeholder="Select a person"
-          optionFilterProp="children"
-          onChange={onChange}
-          onSearch={onSearch}
-          // filterOption={(input, option) =>
-          //   (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-          // }
-          // options={[
-          //   {
-          //     value: "jack",
-          //     label: "Jack",
-          //   },
-          //   {
-          //     value: "lucy",
-          //     label: "Lucy",
-          //   },
-          //   {
-          //     value: "tom",
-          //     label: "Tom",
-          //   },
-          // ]}
+          placeholder="Select city"
+          optionFilterProp="nameEng"
+          filterOption={(input, option) =>
+            (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+          }
+          options={cities.map((c) => ({ label: c.nameEng, value: c.code }))}
+          onChange={(value, op: any) => {
+            form.setFieldValue("cityName", op.label);
+            getDistricts({ cityCode: value });
+          }}
         />
       </Ant.Form.Item>
 
       <Ant.Form.Item
         label="District"
-        name="district"
+        name="districtCode"
         labelAlign="left"
         labelCol={{ span: 5 }}
       >
         <Ant.Select
           showSearch
-          placeholder="Select a person"
-          optionFilterProp="children"
-          onChange={onChange}
-          onSearch={onSearch}
-          // filterOption={(input, option) =>
-          //   (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-          // }
-          // options={[
-          //   {
-          //     value: "jack",
-          //     label: "Jack",
-          //   },
-          //   {
-          //     value: "lucy",
-          //     label: "Lucy",
-          //   },
-          //   {
-          //     value: "tom",
-          //     label: "Tom",
-          //   },
-          // ]}
+          placeholder="Select district"
+          optionFilterProp="nameEng"
+          filterOption={(input, option) =>
+            (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+          }
+          options={districts.map((d) => ({ label: d.nameEng, value: d.code }))}
+          onChange={(value, op: any) => {
+            form.setFieldValue("districtName", op.label);
+            getWards({ districtCode: value });
+          }}
         />
       </Ant.Form.Item>
 
       <Ant.Form.Item
         label="Ward"
-        name="ward"
+        name="wardCode"
         labelAlign="left"
         labelCol={{ span: 5 }}
       >
         <Ant.Select
           showSearch
-          placeholder="Select a person"
-          optionFilterProp="children"
-          onChange={onChange}
-          onSearch={onSearch}
-          // filterOption={(input, option) =>
-          //   (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-          // }
-          // options={[
-          //   {
-          //     value: "jack",
-          //     label: "Jack",
-          //   },
-          //   {
-          //     value: "lucy",
-          //     label: "Lucy",
-          //   },
-          //   {
-          //     value: "tom",
-          //     label: "Tom",
-          //   },
-          // ]}
+          placeholder="Select ward"
+          optionFilterProp="nameEng"
+          filterOption={(input, option) =>
+            (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+          }
+          options={wards.map((w) => ({ label: w.nameEng, value: w.code }))}
+          onChange={(_value, op: any) => {
+            form.setFieldValue("wardName", op.label);
+          }}
         />
       </Ant.Form.Item>
     </Ant.Card>

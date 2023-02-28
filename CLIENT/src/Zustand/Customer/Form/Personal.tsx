@@ -77,7 +77,7 @@ const Personal: React.FC<PersonalProps> = (props) => {
         <Ant.Col span={12}>
           <Ant.Form.Item
             label="Birthday"
-            name="brithday"
+            name="birthday"
             labelAlign="left"
             {...commonProps}
           >
